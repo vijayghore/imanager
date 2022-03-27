@@ -3,10 +3,8 @@
 edits = document.getElementsByClassName('edit');
 Array.from(edits).forEach((element) => {
     element.addEventListener("click", (e) => {
-        // console.log("edit ", );
 
         tr = e.target.parentNode.parentNode;
-        // cid = tr.getElementsByTagName('td')[0].innerText;
         let name = tr.getElementsByTagName('td')[1].innerText;
         let website = tr.getElementsByTagName('td')[2].innerText;
         let phone = tr.getElementsByTagName('td')[3].innerText;
@@ -16,8 +14,6 @@ Array.from(edits).forEach((element) => {
         let country = tr.getElementsByTagName('td')[7].innerText;
         let industry_list = tr.getElementsByTagName('td')[8].innerText;
 
-
-        // cidEdit.value = cid;
         nameEdit.value = name;
         websiteEdit.value = website;
         phoneEdit.value = phone;
@@ -27,8 +23,6 @@ Array.from(edits).forEach((element) => {
         countryEdit.value = country;
         industry_listEdit.value = industry_list;
         srnoEdit.value = e.target.id;
-
-        console.log(srnoEdit.value);
 
         $('#editModal').modal('toggle');
     })
@@ -42,8 +36,7 @@ Array.from(deletes).forEach((element) => {
         srno = e.target.id.substr(1);
 
         if (confirm("Are you sure you want to delete this Record!")) {
-            window.location = `/loginsystem/welcome.php?delete=${srno}`;
-            // TODO: Create a form and use post request to submit a form
+            window.location = `/imanager/welcome.php?delete=${srno}`;
         } else {
             
         }

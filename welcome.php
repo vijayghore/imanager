@@ -10,6 +10,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     include 'partials/_dbconnect.php';
     $username = $_SESSION['username'];
 
+
+    // Deleting the record
     if (isset($_GET['delete'])) {
         $srno = $_GET['delete'];
         $delete = true;
@@ -17,12 +19,13 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
         $result = mysqli_query($conn, $sql);
 
         if ($result) {
-            $showAlert = "Record Deleted.";
+            $showAlert = " Record Deleted.";
         } else {
-            $showError = "Unable to delete. Please try later.";
+            $showError = " Unable to delete. Please try later.";
         }
     }
 
+    // Editing the Record
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $srno = $_POST['srnoEdit'];
         $name = $_POST['nameEdit'];
@@ -34,7 +37,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
         $country = $_POST['countryEdit'];
         $industry_list = $_POST['industry_listEdit'];
 
-
+        // Update query
         $sql = "UPDATE `companies` SET `cname` = '$name', `cwebsite` = '$website', `cphone` = '$phone', `caddress` = '$address', `ccity` = '$city', `cstate` = '$state', `ccountry` = '$country', `industry_list` = '$industry_list' WHERE `companies`.`cid` = $srno";
         $result = mysqli_query($conn, $sql);
 
@@ -58,12 +61,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <style>
-        table {
-            table-layout: auto;
-            width: 100%;
-        }
-    </style>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
@@ -85,6 +82,11 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+        }
+
+        table {
+            table-layout: auto;
+            width: 100%;
         }
     </style>
 </head>
@@ -109,11 +111,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
         $showError = false;
     }
     ?>
-
-    <!-- Button trigger modal -->
-    <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
-        Edit Modal
-    </button> -->
 
     <!-- Modal -->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -168,10 +165,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
         </div>
     </div>
 
-    <?php
-
-    ?>
-
     <h1 class="text-center my-3">Welcome <?php echo $username ?></h1>
 
     <div class="table-responsive p-3">
@@ -192,10 +185,10 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
             </thead>
             <tbody>
                 <?php
+                // Fetching and displaying companies information from the database into the table
                 $sql = "SELECT * FROM companies WHERE username='$username'";
                 $result = mysqli_query($conn, $sql);
                 $num = mysqli_num_rows($result);
-
 
                 if ($num > 0) {
                     $srno = 1;
@@ -222,8 +215,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
             </tbody>
         </table>
     </div>
-
-
 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
