@@ -108,7 +108,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
 
                     <div class="mb-3">
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" aria-describedby="userNameHelp" maxlength="50" required>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" aria-describedby="userNameHelp" maxlength="30" required>
                         <div id="userNameHelp" class="form-text">Choose your username</div>
                     </div>
 

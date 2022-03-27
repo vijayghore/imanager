@@ -90,7 +90,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
 
         <div class="row justify-content-center">
             <div class="col-lg-5 col-md-8 col-sm-12">
-                <form action="/imanager/addcompany.php" method="post" class="justify-content-center row g-3 my-3" name="companydetails">
+                <form action="/imanager/addcompany.php" method="post" class="justify-content-center row g-3 my-2" name="companydetails">
                     <div class="col-12">
                         <input type="text" class="form-control" name="name" id="name" placeholder="Company Name" max="200" required>
                     </div>
@@ -98,7 +98,7 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                         <input type="url" class="form-control" name="website" id="website" placeholder="Company's Website" required>
                     </div>
                     <div class="col-12">
-                        <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number" required>
+                        <input type="tel" class="form-control" name="phone" id="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
                     </div>
                     <div class="col-12">
                         <textarea type="text" class="form-control" name="address" id="address" placeholder="Address" required></textarea>
@@ -114,9 +114,8 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                     </div>
 
                     <div class="col-12">
-                        <!-- <label for="cars">Industry List:</label> -->
                         <select id="industrylist" name="industrylist" class="form-select" required>
-                            <option value="NULL" selected>Industry List</option>
+                            <option value="" selected>-----Industry List-----</option>
                             <option value="Accounts">Accounts</option>
                             <option value="IT">IT</option>
                             <option value="Sales">Sales</option>
@@ -124,9 +123,9 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
                         </select>
                     </div>
 
-                    <div class="row">
-                        <button type="submit" class="col btn btn-primary pr-2">Add Company</button>
-                        <button type="reset" class="col btn btn-primary pl-2">Reset</button>
+                    <div class="row my-2">
+                        <button type="submit" class="col btn btn-secondary mx-2">Add Company</button>
+                        <button type="reset" class="col btn btn-secondary mx-2">Reset</button>
                     </div>
                 </form>
             </div>

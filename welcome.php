@@ -10,7 +10,6 @@ if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] != true) {
     include 'partials/_dbconnect.php';
     $username = $_SESSION['username'];
 
-
     // Deleting the record
     if (isset($_GET['delete'])) {
         $srno = $_GET['delete'];
